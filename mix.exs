@@ -6,6 +6,8 @@ defmodule AzureCM.MixProject do
       app: :azure_content_moderator,
       version: "0.1.0",
       elixir: "~> 1.6",
+      description: description(),
+      package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -15,7 +17,25 @@ defmodule AzureCM.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {AzureCM.Application, []}
+      mod: {AzureCM, []}
+    ]
+  end
+
+  defp description do
+    """
+    Azure Content Moderator API Wrapper written in Elixir.
+    """
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/edgar971/azure_content_moderator"
+      },
+      maintainers: [
+        "edgar971"
+      ]
     ]
   end
 

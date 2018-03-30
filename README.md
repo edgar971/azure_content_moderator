@@ -1,6 +1,5 @@
 # AzureCM
-
-**TODO: Add description**
+Azure Content Moderator API Wrapper written in Elixir.
 
 ## Installation
 
