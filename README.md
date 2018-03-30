@@ -1,6 +1,9 @@
 # AzureCM
 Azure Content Moderator API Wrapper written in Elixir.
 
+Supported Endpoints: 
+- Image - OCR
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
