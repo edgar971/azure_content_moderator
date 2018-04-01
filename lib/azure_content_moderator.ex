@@ -2,6 +2,10 @@ defmodule AzureCM do
   use Application
   use Supervisor
 
+  alias AzureCM.OCRAPI
+  alias AzureCM.ResponseFormatter
+  alias AzureCM.Config
+
   @moduledoc """
   Provides API wrappers for the Azure Content Moderator API.
   See: https://docs.microsoft.com/en-us/azure/cognitive-services/Content-Moderator/api-reference
@@ -24,15 +28,38 @@ defmodule AzureCM do
   end
 
   @doc """
-  Hello world.
+  Returns any text found in the image given a `image_url`. 
 
-  ## Examples
-
-      iex> AzureCM.hello
-      :world
-
+  ## Example
+      iex> AzureCM.ocr("https://moderatorsampleimages.blob.core.windows.net/samples/sample.jpg")
+      {:ok, %{"Candidates" => [], "Language" => "...", "Metadata" => [], "Status" => %{}, "Text" => "...", "TrackingId" => "..."}}
   """
-  def hello do
-    :world
+  def ocr(image_url) do
+    {:ok, body} =
+      %{
+        "DataRepresentation" => "URL",
+        "Value" => image_url
+      }
+      |> JSON.encode()
+
+    headers =
+      []
+      |> add_json_header
+      |> add_subscription_token_header
+
+    params = ocr_params()
+
+    ~s(/ProcessImage/OCR)
+    |> OCRAPI.post(body, headers, params: params)
+    |> ResponseFormatter.format_response()
   end
+
+  defp ocr_params(params \\ []) do
+    params ++ [language: Config.language()]
+  end
+
+  defp add_json_header(headers), do: headers ++ [{"Content-Type", "application/json"}]
+
+  defp add_subscription_token_header(headers),
+    do: headers ++ [{"Ocp-Apim-Subscription-Key", Config.subscription_key()}]
 end
