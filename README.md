@@ -2,7 +2,7 @@
 Azure Content Moderator API Wrapper written in Elixir.
 
 Supported Endpoints: 
-- Image - OCR
+- [Image OCR](https://eastus.dev.cognitive.microsoft.com/docs/services/57cf753a3f9b070c105bd2c1/operations/57cf753a3f9b070868a1f66b)
 
 ## Installation
 
