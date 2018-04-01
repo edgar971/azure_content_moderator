@@ -19,7 +19,10 @@ defmodule AzureCM.MixProject do
       applications: [:httpoison, :logger],
       mod: {AzureCM, []},
       env: [
-        content_moderator_url: "https://westus.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0/"
+        content_moderator_url:
+          "https://eastus.api.cognitive.microsoft.com/contentmoderator/moderate/v1.0",
+        subscription_key: nil,
+        language: "eng"
       ]
     ]
   end
@@ -45,9 +48,10 @@ defmodule AzureCM.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:mock, "~> 0.3.0", only: :test},
       {:httpoison, "~> 1.0"},
-      {:json, "~> 1.0"}
+      {:json, "~> 1.0"},
+      {:mock, "~> 0.3.0", only: :test},
+      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
     ]
   end
 end
