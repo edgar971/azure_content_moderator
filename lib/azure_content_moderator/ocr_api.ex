@@ -11,5 +11,4 @@ defmodule AzureCM.OCRAPI do
     body
     |> JSON.decode()
   end
-
 end

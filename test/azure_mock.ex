@@ -1,4 +1,6 @@
 defmodule AzureCM.APIMock do
+  @moduledoc false
+  
   def ocr(:success_with_image_url) do
     JSON.encode(%{
       "Candidates" => [],
