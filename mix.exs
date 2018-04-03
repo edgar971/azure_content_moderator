@@ -51,7 +51,8 @@ defmodule AzureCM.MixProject do
       {:httpoison, "~> 1.0"},
       {:json, "~> 1.0"},
       {:mock, "~> 0.3.0", only: :test},
-      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 0.5", only: :dev, runtime: false},
+      {:credo, "~> 0.9.0-rc1", only: [:dev, :test], runtime: false}
     ]
   end
 end
